@@ -2,9 +2,7 @@ import sys
 from datetime import timedelta
 from pathlib import Path
 
-from fbs_runtime.application_context.PySide2 import ApplicationContext
-from PySide2.QtWidgets import QMainWindow
-from PySide2.QtWidgets import QFileDialog
+from PySide2.QtWidgets import QApplication, QFileDialog, QMainWindow
 from PySide2.QtCore import QThreadPool
 from skvideo.io import FFmpegWriter
 from skimage import io
@@ -157,9 +155,9 @@ class MainWindow(QMainWindow):
         video.close()
 
 if __name__ == '__main__':
-    appctxt = ApplicationContext()       # 1. Instantiate ApplicationContext
+    app = QApplication([])       # 1. Instantiate ApplicationContext
     window = MainWindow()
     window.resize(640, 520)
     window.show()
-    exit_code = appctxt.app.exec_()      # 2. Invoke appctxt.app.exec_()
+    exit_code = app.exec_()      # 2. Invoke appctxt.app.exec_()
     sys.exit(exit_code)
